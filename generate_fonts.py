@@ -3,10 +3,10 @@
 
 import base64
 import json
-import sys
 import pathlib
 import urllib.error
 import urllib.request
+import urllib.parse
 
 
 CSS_TEMPLATE_REGULAR = """\
@@ -75,23 +75,16 @@ def generate_css(fonts, base_url, is_nerd_font):
                         ('bold_italic', CSS_TEMPLATE_BOLD_ITALIC)):
                 if not weight in paths:
                     continue
-                params = urllib.parse.quote('%s/%s' % (font, paths[weight]))
+                params = urllib.parse.quote('%s' % (paths[weight]))
                 b64_data = download_as_base64(
                     base_url + '/%s' % (params),
                 )
                 fd.write(template.format(name = name, b64_data = b64_data, extension = extension))
 
-
-def unpatched_fonts():
-    with open('fonts-unpatched.json', 'r') as fd:
-        fonts = json.load(fd)
-        generate_css(fonts, 'https://github.com/ryanoasis/nerd-fonts/raw/master/src/unpatched-fonts', False)
-
 def patched_fonts():
     with open('fonts-patched.json', 'r') as fd:
         fonts = json.load(fd)
-        generate_css(fonts, 'https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts', True)
+        generate_css(fonts, 'https://github.com/Karmenzind/monaco-nerd-fonts/raw/master/fonts', True)
 
 if __name__ == '__main__':
-    unpatched_fonts()
-#    patched_fonts()
+   patched_fonts()
