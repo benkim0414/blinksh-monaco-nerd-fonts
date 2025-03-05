@@ -8,7 +8,6 @@ import urllib.error
 import urllib.request
 import urllib.parse
 
-
 CSS_TEMPLATE_REGULAR = """\
 @font-face {{
     font-family: "{name}";
@@ -42,7 +41,6 @@ CSS_TEMPLATE_BOLD_ITALIC = """\
 }}
 """
 
-
 def download_as_base64(url):
     # 'https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/{font}/{regular}'
     print(url)
@@ -51,7 +49,6 @@ def download_as_base64(url):
         assert r.getcode() == 200
         data = r.read()
         return base64.b64encode(data).decode('utf-8')
-
 
 def generate_css(fonts, base_url, is_nerd_font):
     for font, paths in fonts.items():
@@ -84,7 +81,8 @@ def generate_css(fonts, base_url, is_nerd_font):
 def patched_fonts():
     with open('fonts-patched.json', 'r') as fd:
         fonts = json.load(fd)
-        generate_css(fonts, 'https://github.com/Karmenzind/monaco-nerd-fonts/raw/master/fonts', True)
+        # generate_css(fonts, 'https://github.com/Karmenzind/monaco-nerd-fonts/raw/master/fonts', True)
+        generate_css(fonts, 'https://github.com/thep0y/monaco-nerd-font/raw/main/ligaturized', True)
 
 if __name__ == '__main__':
    patched_fonts()

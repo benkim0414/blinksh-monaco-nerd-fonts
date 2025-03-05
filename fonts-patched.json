@@ -1,10 +1,6 @@
 {
 	"Monaco": {
-		"name": "Monaco",
-		"regular": "MonacoNerdFont-Regular.ttf"
-	},
-	"MonacoMono": {
-		"name": "Monaco Mono",
-		"regular": "MonacoNerdFontMono-Regular.ttf"
+		"name": "Monaco Ligaturized",
+		"regular": "MonacoLigaturized.ttf"
 	}
 }
